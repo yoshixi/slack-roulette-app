@@ -10,3 +10,7 @@ export const isGenericMessageEvent = (msg: MessageEvent): msg is GenericMessageE
 
 export const isMessageItem = (item: ReactionAddedEvent['item']): item is ReactionMessageItem =>
   (item as ReactionMessageItem).type === 'message';
+
+export const getRandomSlackUser = (text :string): string => {
+  return text
+}

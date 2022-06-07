@@ -44,30 +44,31 @@ app.message('hello', async ({ message, say }) => {
 
 // need app_mentions:read and chat:write scopes
 app.event('app_mention', async ({ event, say }) => {
-  console.log(event.text)
+  console.log(event.text);
   try {
-    const text = event.text
-    await say({"blocks": [
-      {
-        "type": "section",
-        "text": {
-          "type": "mrkdwn",
-          "text": `Thanks for the mention <@${event.user}>! Here's a button! text: ${text}`
-        },
-        "accessory": {
-          "type": "button",
-          "text": {
-            "type": "plain_text",
-            "text": "Button",
-            "emoji": true
+    const text = event.text;
+    await say({
+      'blocks': [
+        {
+          'type': 'section',
+          'text': {
+            'type': 'mrkdwn',
+            'text': `Thanks for the mention <@${event.user}>! Here's a button! text: ${text}`,
           },
-          "value": "click_me_123",
-          "action_id": "first_button"
-        }
-      }
-    ]});
-  }
-  catch (error) {
+          'accessory': {
+            'type': 'button',
+            'text': {
+              'type': 'plain_text',
+              'text': 'Button',
+              'emoji': true,
+            },
+            'value': 'click_me_123',
+            'action_id': 'first_button',
+          },
+        },
+      ],
+    });
+  } catch (error) {
     console.error(error);
   }
 });
@@ -80,8 +81,8 @@ app.action('button_click', async ({ body, ack, say }) => {
 
 (async () => {
   // Start your app
-  const port =  Number(process.env['PORT']) || 3000
+  const port = Number(process.env['PORT']) || 3000;
   await app.start(port);
 
-  console.log( `⚡️ Bolt app is running! port: ${port}`);
+  console.log(`⚡️ Bolt app is running! port: ${port}`);
 })();
