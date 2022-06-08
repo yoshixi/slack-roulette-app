@@ -3,6 +3,7 @@
 import './utils/env';
 import { App, LogLevel } from '@slack/bolt';
 import { isGenericMessageEvent } from './utils/helper';
+import { appMentionService} from './services/appMention'
 
 // @ts-ignore
 const app = new App({
@@ -44,30 +45,8 @@ app.message('hello', async ({ message, say }) => {
 
 // need app_mentions:read and chat:write scopes
 app.event('app_mention', async ({ event, say }) => {
-  console.log(event.text);
   try {
-    const text = event.text;
-    await say({
-      'blocks': [
-        {
-          'type': 'section',
-          'text': {
-            'type': 'mrkdwn',
-            'text': `Thanks for the mention <@${event.user}>! Here's a button! text: ${text}`,
-          },
-          'accessory': {
-            'type': 'button',
-            'text': {
-              'type': 'plain_text',
-              'text': 'Button',
-              'emoji': true,
-            },
-            'value': 'click_me_123',
-            'action_id': 'first_button',
-          },
-        },
-      ],
-    });
+    await say(appMentionService(event.text));
   } catch (error) {
     console.error(error);
   }
