@@ -3,7 +3,7 @@
 import './utils/env';
 import { App, LogLevel } from '@slack/bolt';
 import { isGenericMessageEvent } from './utils/helper';
-import { appMentionService} from './services/appMention'
+import { appMentionService } from './services/appMention';
 
 // @ts-ignore
 const app = new App({
