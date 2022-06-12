@@ -1,8 +1,8 @@
 import type { SayArguments } from '@slack/bolt';
-import { getRandomSlackUserMentionsFromText } from '../utils/helper';
+import { getRandomSlackUserMentionFromText } from '../utils/helper';
 
 export const appMentionService = (text: string): SayArguments => {
-  const userMention =  getRandomSlackUserMentionsFromText(text)
+  const userMention =  getRandomSlackUserMentionFromText(text)
 
   return {
     text: `The user is ${userMention}!`,

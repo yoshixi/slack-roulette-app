@@ -1,9 +1,9 @@
-import { getRandomSlackUserMentionsFromText, getSlackUserMentionsFromText, isSlackUserId, isSlackGroupId, isSlackTeamId } from '../../src/utils/helper';
+import { getRandomSlackUserMentionFromText, getSlackUserMentionsFromText, isSlackUserId, isSlackGroupId, isSlackTeamId } from '../../src/utils/helper';
 
-describe('getRandomSlackUserMentionsFromText', () =>{
+describe('getRandomSlackUserMentionFromText', () =>{
   const users = ['<@UAKK7UH8U>', '<@UAKB7UH8U>', '<@UAKB0UH8U>'];
   test('return user contained users', ()=>{
-    const result = getRandomSlackUserMentionsFromText(users.join(' '))
+    const result = getRandomSlackUserMentionFromText(users.join(' '))
 
     expect(users.findIndex((el) => el === result)).toBeGreaterThanOrEqual(0);
   })
