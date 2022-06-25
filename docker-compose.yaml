@@ -1,0 +1,18 @@
+version: "3"
+
+services:
+  firebase:
+    container_name: firebase
+    build:
+      context: .
+      dockerfile: ./docker/firebase/Dockerfile
+    volumes:
+      - ./firebase/emulators/:/opt/workspace:cached
+      - ./firebase/bin/:/root.cached:cached
+      - ./firebase/config/:/root/.config:cached
+    ports:
+      - 4000:4000 # Emulator Suite UI
+      - 8080:8080
+      - 9099:9099 # Cloud Firestore
+    working_dir: /opt/workspace
+    tty: true
