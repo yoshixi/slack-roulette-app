@@ -1,18 +1,31 @@
 version: "3"
 
 services:
-  firebase:
-    container_name: firebase
+  app:
+    container_name: "bot"
     build:
+      dockerfile: ./docker/app/Dockerfile
       context: .
-      dockerfile: ./docker/firebase/Dockerfile
-    volumes:
-      - ./firebase/emulators/:/opt/workspace:cached
-      - ./firebase/bin/:/root.cached:cached
-      - ./firebase/config/:/root/.config:cached
     ports:
-      - 4000:4000 # Emulator Suite UI
-      - 8080:8080
-      - 9099:9099 # Cloud Firestore
-    working_dir: /opt/workspace
+      - "3000:3000"
     tty: true
+    stdin_open: true
+    volumes:
+      - .:/usr/src/app
+    command: npm run start
+  # firebase:
+  #   container_name: firebase
+  #   build:
+  #     context: .
+  #     dockerfile: ./docker/firebase/Dockerfile
+  #   volumes:
+  #     - ./firebase/emulators/:/opt/workspace:cached
+  #     - ./firebase/bin/:/root.cached:cached
+  #     - ./firebase/config/:/root/.config:cached
+  #   ports:
+  #     - 4000:4000 # Emulator Suite UI
+  #     - 8080:8080
+  #     - 9099:9099 # Cloud Firestore
+  #   working_dir: /opt/workspace
+  #   tty: true
+
